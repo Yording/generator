@@ -1,0 +1,20 @@
+{
+  "name": "generator-wedevjs",
+  "description": "Generator for WeDevJS",
+  "authors": [
+    "WeDevJS"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/WeDevJS/generator-wedevjs",
+  "moduleType": [],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "normalize-css": "^4.2.0",
+    "jquery": "^3.1.0",
+    "angular-ui-router": "^0.3.1",
+    "materialize": "^0.97.7"
+  },
+  "devDependencies": {
+    "angular-translate": "^2.11.1"
+  }
+}

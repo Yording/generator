@@ -8,10 +8,12 @@ module.exports = {
 	},
 	show: function(req,res){
 		User.findById(req.params.id,function(err,user){
-			if(!user){
-				return res.status(404).end();
+			if(user!=null){
+				res.status(200).json(user);
 			}
-			res.status(200).json(user);
+			else{
+				res.status(404).end();
+			}	
 		});
 	},
 	create: function(req,res){
@@ -23,18 +25,17 @@ module.exports = {
 		});
 		user.save(function(err,user){
 			if(!err){
-				if(!user){
-					res.status(404).end();
+				if(user!=null){
+					res.status(200).json(user);
 				}
 				else{
-					res.status(200).json(user);
+					res.status(404).end();
 				}
 			}
 			else{
 				console.log(err);
 				res.status(400).json(err);
-			}
-			
+			}		
 		});
 	},
 	update: function(req,res){
@@ -43,6 +44,20 @@ module.exports = {
 	delete: function(req,res){
 		User.findOneAndRemove({_id:req.params.id},function(err,user){
 			console.log(user);
+		});
+	},
+	session: function(req,res){
+		User.findOne({
+			email: req.body.email,
+			password: req.body.password
+		},function(err,user){
+			if(user!=null){
+				req.session.user_id=user._id;
+				res.status(200).json(user);
+			}
+			else{
+				res.status(404).end();
+			}
 		});
 	}
 };

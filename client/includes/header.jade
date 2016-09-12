@@ -1,7 +1,8 @@
 doctype
-html.no-js
+html(ng-app="app")
 	head
 		meta(charset='utf-8')
+		base(href='/')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		title WeDevJS
 		meta(name='description', content='')
@@ -15,10 +16,6 @@ html.no-js
 			link(rel="stylesheet", href="#{bowerCssFile}")
 
 		
-	body(ng-app="app" ng-controller="mainController")
-		<!--[if lt IE 8]>
-		p.browsehappy
-			| You are using an <strong>outdated</strong> browser.
-			| Please <a href="http://browsehappy.com/">upgrade your browser</a>
-			| to improve your experience.
-		<![endif]-->
+	body
+		block body
+		

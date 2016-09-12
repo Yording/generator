@@ -9,6 +9,6 @@ router.post('/users', users.create);
 router.put('/users/:id', users.update);
 router.patch('/users/:id', users.update);
 router.delete('/users/:id', users.delete);
-
+router.post('/sessions',users.session);
 
 module.exports = router;

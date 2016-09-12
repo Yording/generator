@@ -1,15 +1,18 @@
-.navbar-fixed
-	nav
-		.nav-wrapper.grey.darken-3
-			a.brand-logo(ui-sref="/") WeDevJS
-			ul.right.hide-on-med-and-down
-				li.active
-					a(ui-sref='home' translate="menu.home")
-				li
-					a(ui-sref='about' translate="menu.about")
-				li
-					a(ui-sref='contact' translate="menu.contact")
-				li
-					a(ui-sref='login') Login
-				li
-					a(ui-sref='signup') Registrar
+extends header
+block body
+	.navbar-fixed
+		nav
+			.nav-wrapper.grey.darken-3
+				a.brand-logo(ui-sref="/") WeDevJS
+				ul.right.hide-on-med-and-down
+					li.active
+						a(ui-sref='home' translate="menu.home")
+					li
+						a(ui-sref='about' translate="menu.about")
+					li
+						a(ui-sref='contact' translate="menu.contact")
+					li
+						a(ui-sref='login') Login
+					li
+						a(ui-sref='signup') Registrar
+	

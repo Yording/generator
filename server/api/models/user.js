@@ -23,7 +23,7 @@ var user_schema= new Schema({
 	username:{
 		type: String,
 		required: true,
-		maxLength: 20,
+		maxLength: [20,"The username requires a maximium 20 characters."],
 		unique: true
 	},
 	password:{

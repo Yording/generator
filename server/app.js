@@ -2,9 +2,11 @@ var config = require("./config/default");
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
+var morgan = require('morgan');
 var session = require("express-session");
 var redisStore= require("connect-redis")(session);
 var path = require("path");
+var session_middleware = require('./api/middlewares/session');
 // var assets = require(path.join(process.cwd(), './config/default'));
 var router = require("./routes");
 
@@ -26,7 +28,8 @@ app.use("/app",express.static("../client/app"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride());
-
+app.use(morgan('dev'));
+app.use(sessionRedisMiddleware);
 
 // var index = function(req, res){
 //     console.log("entrar index");
@@ -44,21 +47,31 @@ app.use(methodOverride());
 //     res.render(name);
 // };
 
-app.get('/',function(req,res) {
-    res.render('../../index',{
-    	cssFiles: config.client.css,
-    	bowerCssFiles: config.client.bower.css,
-    	bowerJsFiles: config.client.bower.js,
-    	jsFiles: config.client.js
-    });
+app.get('/',function(req, res){
+ res.render('../../index',{
+    cssFiles: config.client.css,
+    bowerCssFiles: config.client.bower.css,
+    bowerJsFiles: config.client.bower.js,
+    jsFiles: config.client.js
 });
-
-app.get('/:name',function (req, res) {
-    var name = req.params.name;
-    res.render(name);
 });
+app.get('/core/:name',function (req, res) {
+  var name = req.params.name;
+  res.render('core/' + name);
+});
+app.get('*', function(req, res){
+ res.render('../../index',{
+    cssFiles: config.client.css,
+    bowerCssFiles: config.client.bower.css,
+    bowerJsFiles: config.client.bower.js,
+    jsFiles: config.client.js
+});
+});
+// app.get('/:name',);
 
+app.use('/app',session_middleware);
 app.use("/app",router);
+
 
 app.listen(3000, function () {
   console.log('app listening on port ' + 3000);

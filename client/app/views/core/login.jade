@@ -1,0 +1,12 @@
+.container
+	.row
+		form.col.s12()
+			.row
+				.input-field.col.s12
+					input(type="text" name="email" ng-model="user.email" placeholder="Email")
+			.row
+				.input-field.col.s12
+					input(type="password" name="password" placeholder="Password" ng-model="user.password")
+			input.btn.left(type="submit" value="Login" ng-click="login()")
+			a.right(ui-sref="signup") no tengo cuenta.
+			

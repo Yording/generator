@@ -5,7 +5,7 @@
 */
 var app=angular.module('app', [
 	'ui.router',
-	'pascalprecht.translate',
+	'pascalprecht.translate'
 ])
 .config(['$urlRouterProvider', '$locationProvider','$translateProvider',function($urlRouterProvider, $locationProvider,$translateProvider) {
 	$urlRouterProvider
